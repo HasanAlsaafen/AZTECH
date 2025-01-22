@@ -777,9 +777,9 @@ button:active {
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
 
-    /* Hero section slider*/
 document.addEventListener("DOMContentLoaded", () => {
     let currentIndex = 0;
     const slides = document.querySelectorAll('.hero-slide');
@@ -798,7 +798,7 @@ document.addEventListener("DOMContentLoaded", () => {
         slideInterval = setInterval(() => {
             currentIndex = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
             showSlide(currentIndex);
-        }, 10000); 
+        }, 10000);
     }
 
     function stopSlideInterval() {
@@ -820,82 +820,87 @@ document.addEventListener("DOMContentLoaded", () => {
     const serviceCarousel = document.getElementById('serviceCarousel');
     const progressBar = document.getElementById('carouselProgressBar');
 
-
     if (serviceCarousel && progressBar) {
-    serviceCarousel.addEventListener('slid.bs.carousel', function () {
-        const totalItems = serviceCarousel.querySelectorAll('.carousel-item').length;
-        const activeItem = serviceCarousel.querySelector('.carousel-item.active');
-        const currentIndex = Array.from(serviceCarousel.querySelectorAll('.carousel-item')).indexOf(activeItem) + 1;
-
-        const progress = (currentIndex / totalItems) * 100;
-        progressBar.style.width = progress + '%';
-        progressBar.setAttribute('aria-valuenow', progress.toFixed(2));
-    });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const serviceCarousel = document.getElementById('serviceCarousel');
-    const progressBar = document.getElementById('carouselProgressBar');
-
-    if (serviceCarousel && progressBar) {
-        serviceCarousel.addEventListener('slid.bs.carousel', function (event) {
+        serviceCarousel.addEventListener('slid.bs.carousel', function () {
             const totalItems = serviceCarousel.querySelectorAll('.carousel-item').length;
-            const currentIndex = event.to + 1; 
-            const progress = (currentIndex / totalItems) * 100;
+            const activeItem = serviceCarousel.querySelector('.carousel-item.active');
+            const currentIndex = Array.from(serviceCarousel.querySelectorAll('.carousel-item')).indexOf(activeItem) + 1;
 
+            const progress = (currentIndex / totalItems) * 100;
             progressBar.style.width = progress + '%';
             progressBar.setAttribute('aria-valuenow', progress.toFixed(2));
         });
     }
-});
-    function animateNumbers(element, target, duration) {
-        const start = 0;
-        const increment = target / (duration / 16);
-        let current = start;
-        let isInViewportFlag = false;
 
-        const updateNumber = () => {
-            current += increment;
-            if (current >= target) {
-                element.textContent = target % 1 === 0 ? target : target.toFixed(1);
+    function animateNumbers(element, target, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = timestamp - startTimestamp;
+            const increment = Math.min(progress / duration, 1) * target;
+
+            element.textContent = target % 1 === 0 ? Math.floor(increment) : increment.toFixed(1);
+
+            if (progress < duration) {
+                requestAnimationFrame(step);
             } else {
-                element.textContent = target % 1 === 0 ? Math.floor(current) : current.toFixed(1);
-                if (isInViewport(element) && !isInViewportFlag) {
-                    requestAnimationFrame(updateNumber); 
-                }
+                element.textContent = target;
             }
         };
 
-        updateNumber();
+        requestAnimationFrame(step);
+    }
+
+    function startObserving() {
+        const numbers = document.querySelectorAll(".stat-number");
+        let hasAnimated = false;
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasAnimated) {
+                        hasAnimated = true;
+                        console.log('Stats section is in viewport (Observer Triggered)');
+                        numbers.forEach((number) => {
+                            const target = parseFloat(number.getAttribute("data-target"));
+                            animateNumbers(number, target, 2000);
+                        });
+                        observer.disconnect(); 
+                    }
+                });
+            }, { threshold: 0.4 }); 
+
+            observer.observe(document.getElementById("stats"));
+        } else {
+            console.warn("IntersectionObserver not supported, using scroll event fallback.");
+
+            window.addEventListener("scroll", function scrollHandler() {
+                if (isInViewport(document.getElementById("stats")) && !hasAnimated) {
+                    hasAnimated = true;
+                    console.log('Stats section is in viewport (Scroll Triggered)');
+                    numbers.forEach((number) => {
+                        const target = parseFloat(number.getAttribute("data-target"));
+                        animateNumbers(number, target, 2000);
+                    });
+                    window.removeEventListener("scroll", scrollHandler);
+                }
+            }, { passive: true });
+        }
     }
 
     function isInViewport(element) {
         const rect = element.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
+        console.log(`Element position - top: ${rect.top}, bottom: ${rect.bottom}, window height: ${window.innerHeight}`);
+        return rect.top < window.innerHeight && rect.bottom >= 0;
     }
 
-    const statsSection = document.getElementById("stats");
-    const numbers = document.querySelectorAll(".stat-number");
-    let hasAnimated = false;
-
-    if (statsSection && numbers.length > 0) {
-        window.addEventListener("scroll", () => {
-            if (isInViewport(statsSection) && !hasAnimated) {
-                hasAnimated = true;
-                numbers.forEach((number) => {
-                    const target = parseFloat(number.getAttribute("data-target"));
-                    animateNumbers(number, target, 2000);
-                });
-            }
-        });
-    }
+    window.addEventListener("load", () => {
+        console.log("Page fully loaded.");
+        startObserving();
+    });
 });
 
  </script>
+
 </body>
 </html>
