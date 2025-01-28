@@ -1,906 +1,533 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AZTECH - Your reliable IT solutions partner.">
-    <meta name="keywords" content="IT solutions, cloud services, app development">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="AZTECH - Your reliable IT solutions partner."
+    />
+    <meta
+      name="keywords"
+      content="IT solutions, cloud services, app development"
+    />
     <title>AZTECH</title>
-    <link rel="icon" href="asset/logo.png" type="image/png">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css\style.css"> 
+    <link rel="icon" href="assets\icon.ico" type="image/png" />
 
-<style>
-/* Genral CSS*/
-html {
-    scroll-behavior: smooth;
-}
-body {
-    margin: 0; 
-    padding: 0; 
-    font-family: Arial, sans-serif; 
-    font-size: 16px; 
-    color: #333; 
-    background-color: #f4f4f4; 
-    line-height: 1.6;
-}
-/* Nav-Bar CSS*/
-
-.navbar-brand { /* Logo CSS*/
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-.navbar-nav .nav-link {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #2c3e50;
-    position: relative;
-    text-transform: uppercase;
-    transition: color 0.3s ease, background 0.3s ease;
-}
-
-.navbar-nav .nav-link:hover {
-    color: #3498db;
-}
-
-.navbar-nav .nav-link::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: -5px;
-    width: 0;
-    height: 2px;
-    background: #3498db;
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-}
-
-.navbar-nav .nav-link:hover::after {
-    width: 50%;
-}
-
-.navbar-nav .nav-link.active {
-    color: #3498db;
-    font-weight: 600;
-}
-
-.navbar-nav .nav-link.active::after {
-    width: 50%;
-}
-
-
-.search-box {/* Search Bar */
-    width: 250px;
-    transition: all 0.3s ease;
-}
-
-.search-box .form-control {
-    border: 1px solid #ddd;
-    border-radius: 50px;
-    box-shadow: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.search-box .form-control:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 8px rgba(52, 152, 219, 0.4);
-}
-
-.search-box:focus-within {
-    width: 300px;
-}
-
-.sticky-top {
-            transition: all 0.3s ease;
-        }
-
-        .sticky-top.scrolled {
-            background: #ffffff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 0.5rem 0; 
-        }
-
-/* Hero section CSS*/
-
-.hero-section {
-    position: relative;
-    overflow: hidden;
-    height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(45deg, #3498db, #8e44ad);
-    background-size: 300% 300%;
-    animation: gradientShift 10s ease infinite;
-}
-
-.hero-images-wrapper {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.5s ease-in-out;
-}
-.hero-slide {
-    flex-shrink: 0;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-content {
-    position: absolute;
-    top: 50%;
-    left: 10%; 
-    transform: translateY(-50%);
-    z-index: 2;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5); 
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 40%; 
-    text-align: left;
-    
-}
-
-.hero-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    
-}
-
-.lead {
-    font-size: 1.25rem;
-}
-.hero-image {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1; 
-}
-
-
-.nav-arrow {
-    width: 40px;
-    height: 40px;
-    background-color: black; 
-    color: white; 
-    border-radius: 50%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 3;
-    transition: all 0.3s ease-in-out;
-}
-.nav-arrow.left .nav-arrow.right :hover
-{
-    transform: translateY(-50%) scale(1.1); 
-
-}
-
-.nav-arrow.left {
-    left: 15px;
-}
-
-.nav-arrow.right {
-    right: 15px;
-}
-
-/* Cards CSS*/
-
-.card-img-top {
-        width: 80px;
-        height: 80px;
-        margin: 20px auto;
-    }
-
-    .card {
-        border-radius: 20px;
-        overflow: hidden;
-        transition: all 0.3s ease-in-out;
-    }
-
-    .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-
-    .carousel-control-prev,
-.carousel-control-next {
-    width: 40px;
-    height: 40px;
-    background-color: black; 
-    color: white;
-    border-radius: 50%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 3;
-    transition: all 0.3s ease-in-out;
-}
-
-.carousel-control-prev {
-    left: -50px; 
-}
-
-.carousel-control-next {
-    right: -50px; 
-}
-
-.carousel-control-prev:hover,
-.carousel-control-next:hover {
-  
-    transform: translateY(-50%) scale(1.1); 
-}
-    .progress {
-        height: 8px;
-        border-radius: 10px;
-        overflow: hidden;
-        background-color: #e0e0e0;
-        margin-top: 20px;
-    }
-
-    .progress-bar {
-        background-color: #007bff;
-        transition: width 1s ease-in-out;
-    }
-    .background-rectangle {
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      width: 200px;
-      height: 400px;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 10px,
-        #d3d3d3 10px,
-        #d3d3d3 12px
-      );
-      animation: moveRectangle 8s linear infinite;
-      transform: translate(-50%, -50%);
-      opacity: 0.2;
-    }
-
-    /* Robot Section */
-    .left-section {
-      background: linear-gradient(145deg, #1a73e8, #003b9f);
-      color: white;
-      border-radius: 15px;
-      padding: 40px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .left-section h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-
-    .left-section p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-
-    .left-section img {
-      width: 150px;
-      margin-top: 20px;
-      animation: bounce 3s infinite;
-    }
-    
-    .right-section h2 span {
-      color: #1a73e8;
-    }
-
-    .contact-info a {
-      text-decoration: none;
-      padding: 10px 20px;
-      background: #1a73e8;
-      color: white;
-      border-radius: 5px;
-      transition: background 0.3s, transform 0.3s;
-    }
-
-    .contact-info a:hover {
-      background: #003b9f;
-    }
-
-    .contact-info span {
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .moving-dots {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 150px;
-      height: 150px;
-      background: repeating-linear-gradient(
-        45deg,
-        #f8f9fc,
-        #f8f9fc 2px,
-        transparent 2px,
-        transparent 4px
-      );
-      animation: moveDots 6s linear infinite;
-      opacity: 0.6;
-    }
-    #robot-hand {
-    transition: transform 0.5s ease;
-}
-
-#robot-hand:hover {
-    transform: rotate(-10deg) scale(1.1);
-}
-/* Statistics */
-.statistics-section {
-      text-align: center;
-      background-color: #3263c7;
-      color: white;
-      padding: 50px 20px;
-    }
-
-    .statistics-container {
-      display: flex; 
-      justify-content: space-around;
-      align-items: center;
-      flex-wrap: wrap; 
-    }
-
-    .stat-item {
-      flex: 1; 
-      margin: 20px;
-      min-width: 150px; 
-    }
-
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: bold;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .statistics-footer {
-      margin-top: 30px;
-    }
-    /* Footer */
-    .mapouter {
-        position: relative;
-        text-align: right;
-        width: 100%;
-        height: 300px;
-    }
-    .gmap_canvas {
-        overflow: hidden;
-        background: none!important;
-        width: 100%;
-        height: 100%;
-    }
-    .gmap_iframe {
-        width: 100%!important;
-        height: 100%!important;
-    }
-
-
-/* Buttons */
-
-button {
-    transition: all 0.3s ease;
-}
-
-button:hover {
-    transform: scale(1.1);
-    background-color: #3498db;
-    color: white;
-}
-
-button:active {
-    transform: scale(0.95);
-
-
-}
-
-/* Animations*/
-
-    @keyframes moveRectangle {
-      0% {
-        transform: translate(-50%, -50%) translateY(0);
-      }
-      100% {
-        transform: translate(-50%, -50%) translateY(-100px);
-      }
-    }
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-10px);
-      }
-      60% {
-        transform: translateY(-5px);
-      }
-    }
-    @keyframes moveDots {
-      0% {
-        transform: translateX(0) translateY(0);
-      }
-      100% {
-        transform: translateX(-100px) translateY(-100px);
-      }
-    }
-    
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-/* Some media quaries*/
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 2rem; 
-        margin-top: 4rem;
-
-    }
-}
-
-@media (max-width: 576px) {
-    .hero-title {
-        font-size: 1.5rem; 
-        margin-top: 3rem; 
-
-    }
-}
-
-</style>
-</head>
-<body>
-  
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css\style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <!--header-->
     <header class="bg-light py-2">
-        <div class="container d-flex justify-content-center align-items-center">
-            <div class="d-flex justify-content-center align-items-center w-100">
-                <a href="https://www.facebook.com" target="_blank" class="me-3" aria-label="Facebook">
-                   <i class="fab fa-facebook-square"></i>
-                </a>
-                <a href="mailto:info@aztech.com" class="me-3" aria-label="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="tel:+970592935904" class="me-3" aria-label="Phone">
-                    <i class="fas fa-phone-alt"></i> +970 592935904
-                </a>
-            </div>
+      <div class="container d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center w-100">
+          <a
+            href="https://www.facebook.com"
+            target="_blank"
+            class="me-3"
+            aria-label="Facebook"
+          >
+            <i class="fab fa-facebook-square"></i>
+          </a>
+          <a href="mailto:info@aztech.com" class="me-3" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a href="tel:+970592935904" class="me-3" aria-label="Phone">
+            <i class="fas fa-phone-alt"></i> +970 592935904
+          </a>
         </div>
+      </div>
     </header>
- <!-- Navbar -->
- <nav class="navbar navbar-expand-lg navbar-light bg-gradient sticky-top shadow-sm py-3">
-    <div class="container-fluid">
-        <!-- Logo -->
-        <a class="navbar-brand d-flex align-items-center fw-bold text-uppercase" href="#" style="font-size: 1.5rem; color: #2c3e50;">
-            <i class="fas fa-layer-group me-2" style="color: #3498db;"></i>
-            AZTECH
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-gradient sticky-top shadow-sm py-3"
+    >
+      <div class="container-fluid">
+        <!-- Enhanced Logo Section -->
+        <a
+          class="navbar-brand d-flex align-items-center text-decoration-none"
+          href="#"
+        >
+        <div class="logo-container">
+
+        <img src="assets\logo.png" alt="Aztech Logo" class="logo img-fluid">
+
+        </div>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto align-items-center">
-                <li class="nav-item">
-                    <a class="nav-link px-3" href="#" id="nav-home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-3" href="#services" id="nav-services">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-3" href="#contact" id="nav-contact">Contact Us</a>
-                </li>
-            </ul>
-            <!-- Search Bar -->
-            <div class="d-flex align-items-center search-box position-relative">
-                <input type="text" class="form-control rounded-pill px-4" placeholder="Search" aria-label="Search">
-                <i class="fas fa-search position-absolute top-50 end-0 translate-middle-y px-3" style="cursor: pointer; color: #555;"></i>
-            </div>
+          <ul class="navbar-nav mx-auto align-items-center">
+            <li class="nav-item">
+              <a class="nav-link px-3" href="#" id="nav-home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3" href="#services" id="nav-services"
+                >Services</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3" href="#contact" id="nav-contact"
+                >Contact Us</a
+              >
+            </li>
+          </ul>
+          <!-- Search Bar -->
+          <div class="d-flex align-items-center search-box position-relative">
+            <input
+              type="text"
+              class="form-control rounded-pill px-4"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <i
+              class="fas fa-search position-absolute top-50 end-0 translate-middle-y px-3"
+              style="cursor: pointer; color: #555"
+            ></i>
+          </div>
         </div>
+      </div>
+    </nav>
+<!-- Slider -->
+<div class="container-fluid p-0 ">
+  <div id="heroSlider" class="carousel slide hero-section " data-bs-ride="carousel">
+    
+    <!-- Carousel Indicators -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="2"></button>
     </div>
-</nav>
-    <!-- Slider -->
-    <div class="container-fluid p-0">
-        <div id="heroSlider" class="carousel slide hero-section" data-bs-ride="carousel">
-            <!-- Carousel Indicators -->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="0" class="active" aria-current="true"></button>
-                <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="2"></button>
-            </div>
 
-            <div class="carousel-inner">
-                <!-- Slide 1 -->
-                <div class="carousel-item active">
-                    <div class="row align-items-center text-center h-100">
-                        <div class="col-md-6">
-                            <h2 class="hero-title">Inspiration for Change</h2>
-                            <p class="lead">This image represents a moment of inspiration, sparking creativity and motivation for new beginnings.</p>
-                        </div>
-                        <div class="col-md-6">
-                            <img src="https://i.pinimg.com/736x/50/ff/d0/50ffd0894f5eea724e4031dbf54866e3.jpg" class="d-block w-100 rounded" alt="Image 1">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 2 -->
-                <div class="carousel-item">
-                    <div class="row align-items-center text-center h-100">
-                        <div class="col-md-6">
-                            <h2 class="hero-title">Discover New Paths</h2>
-                            <p class="lead">Explore the endless possibilities that lie ahead with determination and courage.</p>
-                        </div>
-                        <div class="col-md-6">
-                            <img src="https://i.pinimg.com/736x/33/6c/dd/336cdd253fb0e47e44f76a725aa82d85.jpg" class="d-block w-100 rounded" alt="Image 2">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="carousel-item">
-                    <div class="row align-items-center text-center h-100">
-                        <div class="col-md-6">
-                            <h2 class="hero-title">Moments of Reflection</h2>
-                            <p class="lead">Take a pause to reflect and appreciate the journey you've embarked on so far.</p>
-                        </div>
-                        <div class="col-md-6">
-                            <img src="https://i.pinimg.com/736x/f5/c4/66/f5c466285a78c6da817056e181dccfe8.jpg" class="d-block w-100 rounded" alt="Image 3">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Navigation Arrows -->
-            <button class="carousel-control-prev nav-arrow left" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next nav-arrow right" type="button" data-bs-target="#heroSlider" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+    <div class="carousel-inner">
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="overlay"></div>
+        <div class="diagonal-line"></div>
+        <img src="https://i.pinimg.com/736x/ea/37/71/ea377159b319b539c893581efdae6a2c.jpg" class="d-block w-100 slide-img" alt="Slide 1" />
+        <div class="carousel-caption text-start">
+          <span class="badge text-bg-light px-4 py-2 animate-fadeIn ">We are IT service agency ~</span>
+          <h2 class="display-3 fw-bold text-white animate-slideInLeft">Prosper in this volatile market funding.</h2>
+          <p class="lead text-white animate-slideInRight">We place you at the centre of international networks to advance your strategic interests.</p>
+          <a href="#" class="btn btn-primary px-4 py-2 animate-fadeInUp">Contact Us →</a>
         </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item active">
+        <div class="overlay"></div>
+        <div class="diagonal-line"></div>
+        <img src="https://img.freepik.com/premium-photo/our-vision-concept-business-technology-internet_220873-13795.jpg?w=360" class="d-block w-100 slide-img" alt="Slide 2" />
+        <div class="carousel-caption text-start">
+          <span class="badge text-bg-light px-4 py-2 animate-fadeIn ">We are IT service agency ~</span>
+          <h2 class="display-3 fw-bold text-white animate-fadeInLeft">Our Vision</h2>
+          <p class="lead text-white animate-fadeInRight">Explore endless possibilities with determination and courage.</p>
+          <a href="#" class="btn btn-primary px-4 py-2 animate-fadeInUp">Learn More →</a>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item active">
+        <div class="overlay"></div>
+        <div class="diagonal-line"></div>
+        <img src="https://i.pinimg.com/736x/f5/c4/66/f5c466285a78c6da817056e181dccfe8.jpg" class="d-block w-100 slide-img" alt="Slide 3" />
+        <span class="badge text-bg-light px-4 py-2 animate-fadeIn">We are IT service agency ~</span>
+        <div class="carousel-caption text-start">
+          <span class="badge text-bg-light px-4 py-2 animate-fadeIn ">We are IT service agency ~</span>
+          <h2 class="display-3 fw-bold text-white animate-slideInLeft">Moments of Reflection</h2>
+          <p class="lead text-white animate-slideInRight">Take a pause to reflect and appreciate your journey.</p>
+          <a href="#" class="btn btn-primary px-4 py-2 animate-fadeInUp">Discover More →</a>
+        </div>
+      </div>
     </div>
-<!-- Services Section -->
-<section id="services" class="py-5 bg-light">
-    <div class="container">
-        <h2 class="text-center mb-4">Our Services</h2>
+
+    <!-- Navigation Arrows -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroSlider" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+</div>
+
+        <!-- Navigation Arrows -->
+        <button
+          class="carousel-control-prev nav-arrow left"
+          type="button"
+          data-bs-target="#heroSlider"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next nav-arrow right"
+          type="button"
+          data-bs-target="#heroSlider"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <section id="services" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-4 text-primary fw-bold">Our Services</h2>
 
         <!-- Carousel -->
-        <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
-            <div class="carousel-inner">
-                <!-- Phase 1 -->
-                <div class="carousel-item active" data-index="0">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/3242/3242120.png" class="card-img-top" alt="Web Development">
-                                <div class="card-body">
-                                    <h5 class="card-title">Web Development</h5>
-                                    <p class="card-text">Responsive and dynamic websites tailored to your needs.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/4149/4149691.png" class="card-img-top" alt="Cloud Solutions">
-                                <div class="card-body">
-                                    <h5 class="card-title">Cloud Solutions</h5>
-                                    <p class="card-text">Reliable cloud infrastructure and services for scalability.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/15118/15118965.png" class="card-img-top" alt="Software Solutions">
-                                <div class="card-body">
-                                    <h5 class="card-title">Software Solutions</h5>
-                                    <p class="card-text">Custom software development for various industries.</p>
-                                </div>
-                            </div>
-                        </div>
+        <div
+          id="serviceCarousel"
+          class="carousel slide"
+          data-bs-ride="carousel"
+          data-bs-interval="10000"
+        >
+          <div class="carousel-inner">
+            <!-- Phase 1 -->
+            <div class="carousel-item active" data-index="0">
+              <div class="row text-center">
+                <div class="col-md-4">
+                  <div class="card service-card shadow-lg border-0">
+                    <div class="card-img-container">
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/128/3242/3242120.png"
+                        class="card-img-top"
+                        alt="Web Development"
+                      />
                     </div>
-                </div>
-
-                <!-- Phase 2 -->
-                <div class="carousel-item" data-index="1">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/1238/1238227.png" class="card-img-top" alt="SEO Services">
-                                <div class="card-body">
-                                    <h5 class="card-title">SEO Services</h5>
-                                    <p class="card-text">Improve your website's ranking on search engines.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/5738/5738077.png" class="card-img-top" alt="App Development">
-                                <div class="card-body">
-                                    <h5 class="card-title">App Development</h5>
-                                    <p class="card-text">Mobile app development for iOS and Android platforms.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/5347/5347863.png" class="card-img-top" alt="Consulting Services">
-                                <div class="card-body">
-                                    <h5 class="card-title">Consulting Services</h5>
-                                    <p class="card-text">Expert advice and consultation for business growth.</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Web Development</h5>
+                      <p class="card-text text-muted">
+                        Responsive and dynamic websites tailored to your needs.
+                      </p>
+                      <button class="btn btn-primary learn-more-btn">
+                        Learn More
+                      </button>
                     </div>
+                  </div>
                 </div>
-
-                <!-- Phase 3 -->
-                <div class="carousel-item" data-index="2">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/1997/1997928.png" class="card-img-top" alt="Digital Marketing">
-                                <div class="card-body">
-                                    <h5 class="card-title">Digital Marketing</h5>
-                                    <p class="card-text">Boost your brand's visibility through marketing.</p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="col-md-4">
+                  <div class="card service-card shadow-lg border-0">
+                    <div class="card-img-container">
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/128/4149/4149691.png"
+                        class="card-img-top"
+                        alt="Cloud Solutions"
+                      />
                     </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Cloud Solutions</h5>
+                      <p class="card-text text-muted">
+                        Reliable cloud infrastructure and services for
+                        scalability.
+                      </p>
+                      <button class="btn btn-primary learn-more-btn">
+                        Learn More
+                      </button>
+                    </div>
+                  </div>
                 </div>
+                <div class="col-md-4">
+                  <div class="card service-card shadow-lg border-0">
+                    <div class="card-img-container">
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/128/15118/15118965.png"
+                        class="card-img-top"
+                        alt="Software Solutions"
+                      />
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Software Solutions</h5>
+                      <p class="card-text text-muted">
+                        Custom software development for various industries.
+                      </p>
+                      <button class="btn btn-primary learn-more-btn">
+                        Learn More
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="carousel-controls d-flex justify-content-between">
-              <button class="carousel-control-prev d-none d-md-block" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon"></span>
-              </button>
-              <button class="carousel-control-next d-none d-md-block" type="button" data-bs-target="#serviceCarousel" data-bs-slide="next">
-                  <span class="carousel-control-next-icon"></span>
-              </button>
+            <!-- Phase 2 -->
+            <div class="carousel-item" data-index="1">
+              <div class="row text-center">
+                <div class="col-md-4">
+                  <div class="card service-card shadow-lg border-0">
+                    <div class="card-img-container">
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/128/1238/1238227.png"
+                        class="card-img-top"
+                        alt="SEO Services"
+                      />
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">SEO Services</h5>
+                      <p class="card-text text-muted">
+                        Improve your website's ranking on search engines.
+                      </p>
+                      <button class="btn btn-primary learn-more-btn">
+                        Learn More
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card service-card shadow-lg border-0">
+                    <div class="card-img-container">
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/128/5738/5738077.png"
+                        class="card-img-top"
+                        alt="App Development"
+                      />
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">App Development</h5>
+                      <p class="card-text text-muted">
+                        Mobile app development for iOS and Android platforms.
+                      </p>
+                      <button class="btn btn-primary learn-more-btn">
+                        Learn More
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card service-card shadow-lg border-0">
+                    <div class="card-img-container">
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/128/5347/5347863.png"
+                        class="card-img-top"
+                        alt="Consulting Services"
+                      />
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Consulting Services</h5>
+                      <p class="card-text text-muted">
+                        Expert advice and consultation for business growth.
+                      </p>
+                      <button class="btn btn-primary learn-more-btn">
+                        Learn More
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="carousel-item" data-index="2">
+              <div class="row text-center">
+                <div class="col-md-4">
+                  <div class="card service-card shadow-lg border-0">
+                    <div class="card-img-container">
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/128/1997/1997928.png"
+                        class="card-img-top"
+                        alt="Digital Marketing"
+                      />
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Digital Marketing</h5>
+                      <p class="card-text text-muted">
+                        Boost your brand's visibility through marketing.
+                      </p>
+                      <button class="btn btn-primary learn-more-btn">
+                        Learn More
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          
+
+          <!-- Carousel Controls -->
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#serviceCarousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#serviceCarousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon"></span>
+          </button>
+
           <!-- Progress Bar -->
-          <div class="progress mt-4">
-            <div id="carouselProgressBar" class="progress-bar" role="progressbar" 
-                 style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-        
-    </div>
-</section>
-<!--robot-->
-<div class="container py-5">
-    <div class="row align-items-center">
-      <!-- Left Section -->
-      <div class="col-md-4">
-        <div class="left-section">
-          <div class="moving-dots"></div>
-          <h1>Hello!</h1>
-          <p>We provide the key solution to your needs.</p>
-          <img id="robot-hand" src="https://cdn-icons-png.flaticon.com/256/8692/8692863.png" alt="Robot Hand" class="img-fluid">
+          <div class="progress mt-3" style="height: 10px">
+            <div
+              class="progress-bar"
+              id="carouselProgress"
+              role="progressbar"
+              style="width: 33%"
+              aria-valuenow="33"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
         </div>
       </div>
-      <!-- Right Section -->
-      <div class="col-md-8">
-        <div class="right-section">
-          <h2>Choose <span>The Best</span> IT Service Company</h2>
-          <p>Since its founding in 2011, Al Malath Al Arabia has grown to be one of the major IT solutions integrators in the Kingdom. Our most key strength is the quality of our team of seasoned experts with over 30 years in the IT space. We have a strong foundation built on legacy, including specialties in IT Hardware, Software and Services, Business Concepts Development, and Consultancy.</p>
-          <div class="contact-info mt-4 d-flex align-items-center gap-3">
-            <a id="contact-btn" href="#">Contact Us!</a>
-            <span>Call for help: +966 11 4002 03</span>
+    </section>
+    <!--robot-->
+    <div class="container py-5" id="robot-section">
+      <div class="row align-items-center">
+        <!-- Left Section -->
+        <div class="col-md-4">
+          <div class="left-section">
+            <div class="moving-dots"></div>
+            <h1>Hello!</h1>
+            <p>We provide the key solution to your needs.</p>
+            <img
+              id="robot-hand"
+              src="https://cdn-icons-png.flaticon.com/256/8692/8692863.png"
+              alt="Robot Hand"
+              class="img-fluid"
+            />
+          </div>
+        </div>
+        <!-- Right Section -->
+        <div class="col-md-8">
+          <div class="right-section">
+            <h2>Choose <span>The Best</span> IT Service Company</h2>
+            <p>
+              Since its founding in 2011, Al Malath Al Arabia has grown to be
+              one of the major IT solutions integrators in the Kingdom. Our most
+              key strength is the quality of our team of seasoned experts with
+              over 30 years in the IT space. We have a strong foundation built
+              on legacy, including specialties in IT Hardware, Software and
+              Services, Business Concepts Development, and Consultancy.
+            </p>
+            <div class="contact-info mt-4 d-flex align-items-center gap-3">
+              <a id="contact-btn" href="#">Contact Us!</a>
+              <span>Call for help: +966 11 4002 03</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
- 
-  <!--statistics-->
-  <div class="statistics-section" id="stats">
-    <h2>Vibrant Society, Thriving Economy, Ambitious Nation</h2>
-    <div class="row mt-4">
-      <div class="stat-item">
-        <span class="stat-number" data-target="2003">0</span>
-        <p>Year of establishment</p>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-target="2500">0</span>
-        <p>Of customers worldwide</p>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-target="14">0</span>
-        <p>Countries with active client base</p>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-target="4.9">0</span>
-        <p>Customer rating</p>
-      </div>
-    </div>
-    <p class="mt-4">You have better things to do than worry about IT for your small business. Let’s Discuss about Project.</p>
-  </div>
-  <!-- Footer -->
 
-  <footer class="bg-dark text-white py-4 mt-5">
-    <div class="container">
-        <div class="row">
-            <!-- Contact Information Section -->
-            <div class="col-md-4 col-12 mb-4">
-                <h5>Contact Information</h5>
-                <ul class="list-unstyled">
-                    <li><strong>Email:</strong> <a href="mailto:221141@ppu.edu.ps" class="text-white">221141@ppu.edu.ps</a></li>
-                    <li><strong>Phone:</strong> <a href="tel:+970592935904" class="text-white">+970 592 935 904</a></li>
-                    <li><strong>Address:</strong> 123 Main St, Palestine</li>
-                </ul>
-            </div>
+    <!-- Button up-->
 
-            <!-- Our Location Section -->
-            <div class="col-md-8 col-12 mb-4">
-                <h5>Our Location</h5>
-                <div class="mapouter">
-                    <div class="gmap_canvas">
-                        <iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=dubai&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-                    </div>
-                </div>
-            </div>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-arrow-up-circle-fill"
+      viewBox="0 0 16 16"
+      class="btn btn-primary rounded-circle shadow"
+      id="scrollToTopBtn"
+    >
+      <path
+        d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"
+      />
+    </svg>
+    <!--statistics-->
+    <div class="statistics-section" id="stats">
+      <h2>Vibrant Society, Thriving Economy, Ambitious Nation</h2>
+      <div class="row mt-4">
+        <div class="stat-item">
+          <span class="stat-number" data-target="2023">0</span>
+          <p>Year of establishment</p>
         </div>
-        
+        <div class="stat-item">
+          <span class="stat-number" data-target="2500">0</span>
+          <p>Of customers worldwide</p>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="14">0</span>
+          <p>Countries with active client base</p>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="4.9">0</span>
+          <p>Customer rating</p>
+        </div>
+      </div>
+      <p class="mt-4">
+        You have better things to do than worry about IT for your small
+        business. Let’s Discuss about Project.
+      </p>
+    </div>
+    <!-- Footer -->
+
+    <footer class="bg-dark text-white py-4 mt-5">
+      <div class="container">
+        <div class="row">
+          <!-- Contact Information Section -->
+          <div class="col-md-4 col-12 mb-4">
+            <h5>Contact Information</h5>
+            <ul class="list-unstyled">
+              <li>
+                <strong>Email:</strong>
+                <a href="mailto:221141@ppu.edu.ps" class="text-white"
+                  >221141@ppu.edu.ps</a
+                >
+              </li>
+              <li>
+                <strong>Phone:</strong>
+                <a href="tel:+970592935904" class="text-white"
+                  >+970 592 935 904</a
+                >
+              </li>
+              <li><strong>Address:</strong> 123 Main St, Palestine</li>
+            </ul>
+          </div>
+
+          <!-- Our Location Section -->
+          <div class="col-md-8 col-12 mb-4">
+            <h5>Our Location</h5>
+    
+                <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=riyadh&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://sprunkiplay.com/">Sprunki Game</a></div><style>.mapouter{position:relative;text-align:right;width:600px;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:600px;height:400px;}.gmap_iframe {width:600px!important;height:400px!important;}</style></div>
+             
+            </div>
+          </div>
+        </div>
+
         <!-- Footer Text -->
         <div class="text-center mt-3">
-            <p>&copy; 2025 Your Company. All rights reserved.</p>
+          <p>&copy; 2025 Your Company. All rights reserved.</p>
         </div>
-    </div>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
-<script>
-
-document.addEventListener("DOMContentLoaded", () => {
-    let currentIndex = 0;
-    const slides = document.querySelectorAll('.hero-slide');
-    const totalSlides = slides.length;
-    const slideWrapper = document.querySelector('.hero-images-wrapper');
-    const prevArrow = document.getElementById('prevArrow');
-    const nextArrow = document.getElementById('nextArrow');
-
-    function showSlide(index) {
-        slideWrapper.style.transform = `translateX(-${index * 100}%)`;
-    }
-
-    let slideInterval;
-
-    function startSlideInterval() {
-        slideInterval = setInterval(() => {
-            currentIndex = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
-            showSlide(currentIndex);
-        }, 10000);
-    }
-
-    function stopSlideInterval() {
-        clearInterval(slideInterval);
-    }
-
-    startSlideInterval();
-
-    const heroSection = document.querySelector('.hero-section');
-
-    window.addEventListener('scroll', () => {
-        if (heroSection && isInViewport(heroSection)) {
-            startSlideInterval();
-        } else {
-            stopSlideInterval();
-        }
-    });
-
-    const serviceCarousel = document.getElementById('serviceCarousel');
-    const progressBar = document.getElementById('carouselProgressBar');
-
-    if (serviceCarousel && progressBar) {
-        serviceCarousel.addEventListener('slid.bs.carousel', function () {
-            const totalItems = serviceCarousel.querySelectorAll('.carousel-item').length;
-            const activeItem = serviceCarousel.querySelector('.carousel-item.active');
-            const currentIndex = Array.from(serviceCarousel.querySelectorAll('.carousel-item')).indexOf(activeItem) + 1;
-
-            const progress = (currentIndex / totalItems) * 100;
-            progressBar.style.width = progress + '%';
-            progressBar.setAttribute('aria-valuenow', progress.toFixed(2));
-        });
-    }
-
-    function animateNumbers(element, target, duration) {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = timestamp - startTimestamp;
-            const increment = Math.min(progress / duration, 1) * target;
-
-            element.textContent = target % 1 === 0 ? Math.floor(increment) : increment.toFixed(1);
-
-            if (progress < duration) {
-                requestAnimationFrame(step);
-            } else {
-                element.textContent = target;
-            }
-        };
-
-        requestAnimationFrame(step);
-    }
-
-    function startObserving() {
-        const numbers = document.querySelectorAll(".stat-number");
-        let hasAnimated = false;
-
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !hasAnimated) {
-                        hasAnimated = true;
-                        console.log('Stats section is in viewport (Observer Triggered)');
-                        numbers.forEach((number) => {
-                            const target = parseFloat(number.getAttribute("data-target"));
-                            animateNumbers(number, target, 2000);
-                        });
-                        observer.disconnect(); 
-                    }
-                });
-            }, { threshold: 0.4 }); 
-
-            observer.observe(document.getElementById("stats"));
-        } else {
-            console.warn("IntersectionObserver not supported, using scroll event fallback.");
-
-            window.addEventListener("scroll", function scrollHandler() {
-                if (isInViewport(document.getElementById("stats")) && !hasAnimated) {
-                    hasAnimated = true;
-                    console.log('Stats section is in viewport (Scroll Triggered)');
-                    numbers.forEach((number) => {
-                        const target = parseFloat(number.getAttribute("data-target"));
-                        animateNumbers(number, target, 2000);
-                    });
-                    window.removeEventListener("scroll", scrollHandler);
-                }
-            }, { passive: true });
-        }
-    }
-
-    function isInViewport(element) {
-        const rect = element.getBoundingClientRect();
-        console.log(`Element position - top: ${rect.top}, bottom: ${rect.bottom}, window height: ${window.innerHeight}`);
-        return rect.top < window.innerHeight && rect.bottom >= 0;
-    }
-
-    window.addEventListener("load", () => {
-        console.log("Page fully loaded.");
-        startObserving();
-    });
-});
-
- </script>
-
-</body>
+    <script type="module" src="js\script.js"></script>
+  </body>
 </html>
