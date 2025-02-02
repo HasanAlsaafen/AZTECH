@@ -145,8 +145,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.onscroll = function () {
     if (
-      document.body.scrollTop > 100 ||
-      document.documentElement.scrollTop > 100
+      document.body.scrollTop > 400 ||
+      document.documentElement.scrollTop > 400
     ) {
       scrollToTopBtn.style.display = "block";
     } else {
@@ -154,7 +154,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Scroll to top when clicking the button
   scrollToTopBtn.onclick = function () {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -178,5 +177,39 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   
     observer.observe(section);
+  });
+  
+  $(document).ready(function () {
+    // Navbar Active State
+    $(".nav-link").click(function () {
+      $(".nav-link").removeClass("active");
+      $(this).addClass("active");
+    });
+  
+    // Search Bar Functionality
+    $(".search-input").on("keyup", function () {
+      let query = $(this).val().trim();
+      let resultsBox = $(".search-results");
+  
+      if (query.length > 0) {
+        // Simulated search results (Replace with AJAX call if needed)
+        let results = ["Service 1", "Service 2", "Contact", "About Us"].filter((item) =>
+          item.toLowerCase().includes(query.toLowerCase())
+        );
+  
+        resultsBox.html(
+          results.map((item) => `<div class="p-2">${item}</div>`).join("")
+        ).removeClass("d-none");
+      } else {
+        resultsBox.addClass("d-none");
+      }
+    });
+  
+    // Hide search results on clicking outside
+    $(document).click(function (e) {
+      if (!$(e.target).closest(".search-box").length) {
+        $(".search-results").addClass("d-none");
+      }
+    });
   });
   
